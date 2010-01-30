@@ -15,10 +15,10 @@ module ThdlIntegration
       headers = {}
       domain = 'www.thlib.org'
     end
-    if options[:template]
-      get_content("http://#{domain}/global/php/offsite.php?url=/template/#{options[:template]}.php", headers)
-    else
+    if options[:template].blank?
       get_content("http://#{domain}/global/php/offsite.php?url=/template/index-offsite.php", headers)
+    else
+      get_content("http://#{domain}/global/php/offsite.php?url=/template/#{options[:template]}.php", headers)
     end
   end
   

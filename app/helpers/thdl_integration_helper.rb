@@ -1,7 +1,7 @@
 module ThdlIntegrationHelper
   def header(body_attributes = Hash.new)
     frame_init()
-    load_attributes if $html_start.blank?
+    load_attributes(:template => body_attributes.delete(:template)) if $html_start.blank?
     return $html_start +
            "<title>#{controller.controller_name.humanize}: #{controller.action_name.humanize}</title>\n" +
            "#{www_js}\n" +
@@ -85,7 +85,7 @@ module ThdlIntegrationHelper
       $content_start = html[content_start...content_start+relative_content_end]
       $footer = html[content_start+relative_content_end...html.size]
     elsif !in_frame()
-      doc = ThdlIntegration.get_layout_document
+      doc = ThdlIntegration.get_layout_document(:template => options[:template])
       head = doc/'head'
       head.search('title').remove
       head.append("<meta name=\"MSSmartTagsPreventParsing\" content=\"TRUE\">\n")
