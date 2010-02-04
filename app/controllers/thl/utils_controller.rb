@@ -10,6 +10,13 @@ class Thl::UtilsController < ApplicationController
     url += '&' + url_params unless url_params.blank?
     url = "http://www.thlib.org" + url if url[0,1] == "/"
     
+    # Any "&"s in the url sent to wiki_reader.php need to be replaced by "%26"
+    if url =~ /wiki_reader\.php\?url=/
+      url_split = url.split("wiki_reader.php?url=")
+      url_split[1].gsub!("&", "%26")
+      url = url_split.join("wiki_reader.php?url=")
+    end
+    
     # Parse the URL with URI.parse() so we can work with its parts more easily
     uri = URI.parse(URI.encode(url));
     requested_host = uri.host
