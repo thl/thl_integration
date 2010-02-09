@@ -5,3 +5,4 @@ require 'patches/traverse'
 require 'thdl_integration'
 ActionView::Base.send :include, ThdlIntegrationHelper
 ActionView::Base.send :include, FrameHelper
+ActionView::Base.send :include, TinyMceExtensionHelper
