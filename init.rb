@@ -6,3 +6,4 @@ require 'patches/active_resource_patch'
 require 'thdl_integration'
 ActionView::Base.send :include, ThdlIntegrationHelper
 ActionView::Base.send :include, FrameHelper
+ActionView::Base.send :include, TinyMceExtensionHelper
