@@ -10,7 +10,7 @@ module ThdlIntegrationHelper
            "\n#{stylesheets}\n" +
            "#{frame_css}\n" +
            "</head>\n" +
-           "<body id=\"body\" #{body_attributes.collect{|at, value| "#{at.to_s}=\"#{value}\""}.join(' ')}>#{$body_start}\n#{side_column}\n#{$post_side_column}" + 
+           "<body #{body_attributes.collect{|at, value| "#{at.to_s}=\"#{value}\""}.join(' ')}>#{$body_start}\n#{side_column}\n#{$post_side_column}" + 
            "<div id=\"login-status\">" +
            "#{login_status}#{'&nbsp;'*3}" +
            language_option_links +
