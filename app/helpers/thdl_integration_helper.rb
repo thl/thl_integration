@@ -41,7 +41,7 @@ module ThdlIntegrationHelper
   end
   
   def javascript_files
-    [:defaults]
+    ['jrails', 'application']
   end
   
   def stylesheets
