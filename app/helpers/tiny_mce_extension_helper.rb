@@ -16,7 +16,7 @@ module TinyMceExtensionHelper
   str += "theme_advanced_buttons1 : ' fullscreen,separator,bold,italic,underline,strikethrough,separator,undo,redo,separator,link,unlink,template,formatselect, code'," + "\n"
   str += "theme_advanced_buttons2 : 'cut,copy,paste,separator,pastetext,pasteword,separator,bullist,numlist,outdent,indent,separator,justifyleft,justifycenter,justifyright,justifiyfull,separator,removeformat,charmap'," + "\n"
   str += "theme_advanced_buttons3 : 'EventButton,HimalayanButton,MapButton,OrgButton,PersonButton,PlaceButton, ProjectButton,RefButton,TibetanButton,TibTextButton, TopicButton'," + "\n"
-  str += "theme_advanced_buttons4 : 'spellchecker,tablecontrols '," + "\n"
+  str += "theme_advanced_buttons4 : 'spellchecker,tablecontrols,ProseButton,VerseButton '," + "\n"
   str += "spellchecker_languages : '+English=en'," + "\n"
   str += "spellchecker_rpc_url : '/application/spellchecker'," + "\n"
   str += "gecko_spellcheck : 'true'," + "\n"
@@ -152,6 +152,22 @@ module TinyMceExtensionHelper
                       									}	
                       								}
                       				});	//TibTextButton" + "\n"                                                
+  str += "// Add Prose Formatting button"  + "\n"
+  str += "  ed.addButton('ProseButton', { title : 'Prose Citation', image : '/images/PROSE.gif',
+                                      onclick : function() {
+                                        ed.focus();
+                                        var current_selection = ed.selection.getContent();
+                                        ed.selection.setContent('<span class=\"prose\" ><p>' + current_selection + '</p></span>');  
+                                        }
+                              });//ProseButton" +"\n"  
+  str += "// Add Verse Formatting button"  + "\n"
+                              str += "  ed.addButton('VerseButton', { title : 'Verse Citation', image : '/images/VERSE.gif',
+                                      onclick : function() {
+                                        ed.focus();
+                                        var current_selection = ed.selection.getContent();
+                                        ed.selection.setContent('<span class=\"verse\"><p>' + current_selection + '</p></span>');   
+                                        }
+                              });//VerseButton" +"\n"
   str += "} //function(ed)" +"\n"                      
   str += "});" + "\n"
   str += "//]]>" + "\n"
@@ -175,7 +191,7 @@ module TinyMceExtensionHelper
   str += "theme_advanced_buttons1 : ' fullscreen,separator,bold,italic,underline,strikethrough,separator,undo,redo,separator,link,unlink,template,formatselect, code'," + "\n"
   str += "theme_advanced_buttons2 : 'cut,copy,paste,separator,pastetext,pasteword,separator,bullist,numlist,outdent,indent,separator,justifyleft,justifycenter,justifyright,justifiyfull,separator,removeformat,charmap'," + "\n"
   str += "theme_advanced_buttons3 : 'EventButton,HimalayanButton,MapButton,OrgButton,PersonButton,PlaceButton, ProjectButton,RefButton,TibetanButton,TibTextButton, TopicButton'," + "\n"
-  str += "theme_advanced_buttons4 : 'spellchecker,tablecontrols '," + "\n"
+  str += "theme_advanced_buttons4 : 'spellchecker,tablecontrols,ProseButton,VerseButton '," + "\n"
   str += "spellchecker_languages : '+English=en'," + "\n"
   str += "spellchecker_rpc_url : '/application/spellchecker'," + "\n"
   str += "gecko_spellcheck : 'true'," + "\n"
@@ -311,6 +327,22 @@ module TinyMceExtensionHelper
                       									}	
                       								}
                       				});	//TibTextButton" + "\n"                                                
+  str += "// Add Prose Formatting button"  + "\n"
+  str += "  ed.addButton('ProseButton', { title : 'Prose Citation', image : '/images/PROSE.gif',
+                                      onclick : function() {
+                                        ed.focus();
+                                        var current_selection = ed.selection.getContent();
+                                        ed.selection.setContent('<span class=\"prose\" ><p>' + current_selection + '</p></span>');  
+                                        }
+                              });//ProseButton" +"\n"  
+  str += "// Add Verse Formatting button"  + "\n"
+  str += "  ed.addButton('VerseButton', { title : 'Verse Citation', image : '/images/VERSE.gif',
+                                      onclick : function() {
+                                        ed.focus();
+                                        var current_selection = ed.selection.getContent();
+                                        ed.selection.setContent('<span class=\"verse\"><p>' + current_selection + '</p></span>');   
+                                        }
+                              });//VerseButton" +"\n"
   str += "} //function(ed)" +"\n"                      
   str += "});" + "\n"
   str += "//]]>" + "\n"
