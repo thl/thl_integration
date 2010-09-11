@@ -74,7 +74,6 @@ module ThdlIntegrationHelper
       html = doc.to_html
       head_end = html.index('</head>')    
       $html_start = html[0...head_end]
-      $html_start.gsub!("<meta content=\"IE=8\" http-equiv=\"X-UA-Compatible\" />", "<meta http-equiv=\"X-UA-Compatible\" content=\"IE=8\" />")
       body_tag_start = html.index('<body')
       body_tag_end = html.index('>', body_tag_start)
       body_end = html.index('<!-- begin content -->')
@@ -94,7 +93,6 @@ module ThdlIntegrationHelper
       html = doc.to_html
       head_end = html.index('</head>')    
       $html_start = html[0...head_end]
-      $html_start.gsub!("<meta content=\"IE=8\" http-equiv=\"X-UA-Compatible\" />", "<meta http-equiv=\"X-UA-Compatible\" content=\"IE=8\" />")
       body_tag_start = html.index('<body')
       body_tag_end = html.index('>', body_tag_start)
       side_column_start = html.index('<!-- begin sliding side column -->')
