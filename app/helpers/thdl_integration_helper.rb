@@ -68,7 +68,6 @@ module ThdlIntegrationHelper
       doc = ThdlIntegration.get_layout_document({:template => 'index-offsite-iframe'})
       head = doc/'head'
       head.search('title').remove
-      head.append("<meta name=\"MSSmartTagsPreventParsing\" content=\"TRUE\">\n")
       head_html = head.to_html
       content = doc%'div#content'
       content.inner_html = ''
@@ -89,7 +88,6 @@ module ThdlIntegrationHelper
       doc = ThdlIntegration.get_layout_document(:template => options[:template])
       head = doc/'head'
       head.search('title').remove
-      head.append("<meta name=\"MSSmartTagsPreventParsing\" content=\"TRUE\">\n")
       head_html = head.to_html
       content = doc%'div#content'
       content.inner_html = ''
