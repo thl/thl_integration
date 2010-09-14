@@ -91,21 +91,21 @@ module ThdlIntegrationHelper
       content = doc%'div#content'
       content.inner_html = ''
       html = doc.to_html
-      head_end = html.index('</head>')    
+      head_end = html.index('</head>')
       $html_start = html[0...head_end]
       body_tag_start = html.index('<body')
       body_tag_end = html.index('>', body_tag_start)
-      side_column_start = html.index('<!-- begin sliding side column -->')
+      side_column_start = html.index('<!-- begin side column -->')
       $body_start = html[body_tag_end+1...side_column_start]
       $side_column_object = doc%'div#side-column'
       ($side_column_object/'div#list1').prepend("<div id=\"app-vertical-links\"></div>")
       content_html = content.to_html
       relative_content_end = content_html.index('</')
-      post_sidenav_start = html.index('<!-- Link for Side-Menu -->')
-      side_column_links_pos = html.index('<!-- Advanced Search -->')
+      post_sidenav_start = html.index('<!-- end side column -->')
+      post_sidenav_end = html.index('<!-- end masthead utility -->')
       content_start = html.index(content_html)
-      $post_side_column = html[post_sidenav_start...side_column_links_pos]
-      $content_start = html[side_column_links_pos...content_start+relative_content_end]
+      $post_side_column = html[post_sidenav_start...post_sidenav_end]
+      $content_start = html[post_sidenav_end...content_start+relative_content_end]
       $footer = html[content_start+relative_content_end...html.size]
     else
       $html_start = "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01//EN\"
