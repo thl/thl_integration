@@ -69,6 +69,8 @@ module ThdlIntegrationHelper
       cache_key << '-iframe' 
     elsif in_frame()
       cache_key << '-in-frame'
+    elsif !options[:template].blank?
+      cache_key << "-#{options[:template]}"
     end
     Rails.cache.fetch(cache_key) do
       attrs = {}
