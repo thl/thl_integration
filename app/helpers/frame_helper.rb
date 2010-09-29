@@ -9,7 +9,7 @@ module FrameHelper
       set_parent_url( parent_url )
       set_css_url( css_url ) unless css_url.blank?      
     end
-    $html_start = nil #not ideal -- means that load_attributes is called every time, but sufficient for now
+    # $html_start = nil not ideal -- means that load_attributes is called every time, but sufficient for now
   end
 
   def get_parent_url
