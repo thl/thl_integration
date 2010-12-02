@@ -17,11 +17,14 @@ namespace :thl_integration do
        'git://github.com/rails/open_id_authentication.git',
        'git://github.com/technoweenie/restful-authentication.git'].each{ |plugin| system "script/plugin install #{plugin}"}
     else
-      git_installers = { 'annotate_models' => 'git://github.com/amontano/annotate_models.git', 'authenticated_system' => 'git://github.com/thl/authenticated_system.git', 'complex_scripts' => 'git://github.com/thl/complex_scripts.git', 'globalize2' => 'git://github.com/joshmh/globalize2.git', 'open_id_authentication' => 'git://github.com/rails/open_id_authentication.git', 'restful-authentication'  => 'git://github.com/technoweenie/restful-authentication.git' }
+      git_installers = { 'annotate_models' => 'git://github.com/amontano/annotate_models.git', 'authenticated_system' => 'git://github.com/thl/authenticated_system.git', 'complex_scripts' => 'git://github.com/thl/complex_scripts.git', 'globalize2' => 'git://github.com/joshmh/globalize2.git', 'jrails' => 'git://github.com/aaronchi/jrails.git', 'open_id_authentication' => 'git://github.com/rails/open_id_authentication.git', 'restful-authentication'  => 'git://github.com/technoweenie/restful-authentication.git', 'universal_navigation' => 'git://github.com/thl/universal_navigation.git' }
       if File.exists?(File.join(RAILS_ROOT, '.git'))
-        git_installers.each{ |path, url| system "git submodule add #{url} vendor/plugins/#{path}" }
+        git_installers.each do |plugin, url| 
+          path = "vendor/plugins/#{plugin}"
+          system "git submodule add #{url} #{path}" if !File.exists?(File.join(RAILS_ROOT, path))
+        end
       else
-        git_installers.each{ |path, url| system "script/plugin install #{url}" }
+        git_installers.each { |plugin, url| system "script/plugin install #{url}" if !File.exists?(File.join(RAILS_ROOT, "vendor/plugins/#{plugin}")) }
       end
     end
   end
