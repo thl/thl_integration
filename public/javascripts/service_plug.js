@@ -94,9 +94,6 @@ var frame_service = {
 			var loc = window.location;
 			var separator = loc.search ? '&' : '?';
 			window.location = loc.protocol+'//'+loc.host+loc.pathname+loc.search+separator+'frame=destroy'+loc.hash;
-		} else {
-			$content = $('#content').html()
-			$('body').html( $content );
 		}
 		
 		this.hide_stuff() ;
