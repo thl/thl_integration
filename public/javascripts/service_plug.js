@@ -59,23 +59,10 @@ var bookmarker = {
 var frame_service = {
 
 	activate_links: function() {
-	
-		function getUrlVars() {
-		    var vars = [], hash;
-		    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
-		    for(var i = 0; i < hashes.length; i++) {
-		        hash = hashes[i].split('=');
-		        vars.push(hash[0]);
-		        vars[hash[0]] = hash[1];
-		    }
-		    return vars;
-		}
 		
-		var parent_url = getUrlVars()['parent_url'];
-		
-		if ( parent_url.length ) {
+		if ( this.parent_url.length ) {
 			$('a').not('[href^=#]').each( function() {
-				this.href += "?parent_url=" + parent_url;
+				this.href += "?parent_url=" + this.parent_url;
 			});
 		}
 		
@@ -115,11 +102,24 @@ var frame_service = {
 	init: function() {
 		//bookmarker.init() ;
 		
+		function getUrlVars() {
+		    var vars = [], hash;
+		    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+		    for(var i = 0; i < hashes.length; i++) {
+		        hash = hashes[i].split('=');
+		        vars.push(hash[0]);
+		        vars[hash[0]] = hash[1];
+		    }
+		    return vars;
+		}
+
+		this.parent_url = getUrlVars()['parent_url'];
+		
+		
 		// If this isn't in an iframe, redirect to add a frame=destroy GET param to destroy the relevant session variable
 		if(top==self){
-			var loc = window.location;
-			var separator = loc.search ? '&' : '?';
-			window.location = loc.protocol+'//'+loc.host+loc.pathname+loc.search+separator+'frame=destroy'+loc.hash;
+			var href = window.location.href;
+			window.location = this.parent_url + "#iframe=" + href;
 		}
 		
 		this.hide_stuff() ;
