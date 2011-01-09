@@ -58,7 +58,7 @@ var bookmarker = {
 
 var frame_service = {
 
-	activate_link: function() {
+	activate_links: function() {
 	
 		function getUrlVars() {
 		    var vars = [], hash;
@@ -74,7 +74,9 @@ var frame_service = {
 		var parent_url = getUrlVars()['parent_url'];
 		
 		if ( parent_url.length ) {
-			console.log(parent_url);
+			$('a').not('[href^=#]').each( function() {
+				this.href += "?parent_url=" + parent_url;
+			});
 		}
 		
 	}
