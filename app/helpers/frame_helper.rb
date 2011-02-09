@@ -13,22 +13,15 @@ module FrameHelper
   end
 
   def get_parent_url
-    if params[:parent_url].blank? #had to add the conditional because of ie's asynch issues
-      parent_url = session[:parent_url]
-    else
-      parent_url = params[:parent_url]
-    end
-    return parent_url
+    return params[:parent_url] || session[:parent_url] #had to add the conditional because of ie's asynch issues
   end
 
   def get_css_url
-    return session[:css_url] if params[:css_url].blank? #had to add the conditional because of ie's asynch issues
-    return params[:css_url]
+    return params[:css_url] || session[:css_url] #had to add the conditional because of ie's asynch issues
   end
 
-  def in_frame
-    return false unless get_parent_url()
-    return true
+  def in_frame?
+    return !get_parent_url.nil?
   end
 
   def kill_session_vars
@@ -71,7 +64,7 @@ module FrameHelper
   end
 
   def frame_css
-    if in_frame()
+    if in_frame?
       if css_url = get_css_url()
       else css_url = "http://www.thlib.org/global/css/thdl-style.css" #temporary solution
       end
@@ -85,11 +78,11 @@ module FrameHelper
   end
 
   def frame_js
-    return javascript_include_tag 'service_plug' if in_frame()
+    return javascript_include_tag 'service_plug' if in_frame?
   end
   
   def www_js
-    return javascript_include_tag 'http://www.thlib.org/global/php/combineJS.php' if in_frame()
+    return javascript_include_tag 'http://www.thlib.org/global/php/combineJS.php' if in_frame?
   end
 
   def frame_width

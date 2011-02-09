@@ -67,7 +67,7 @@ module ThdlIntegrationHelper
     cache_key = 'thl-layout-attributes'
     if options[:iframe]
       cache_key << '-iframe' 
-    elsif in_frame()
+    elsif in_frame?
       cache_key << '-in-frame'
     end
     Rails.cache.fetch(cache_key) do
@@ -91,7 +91,7 @@ module ThdlIntegrationHelper
         content_start = html.index(content_html)
         attrs[:content_start] = html[content_start...content_start+relative_content_end]
         attrs[:footer] = html[content_start+relative_content_end...html.size]
-      elsif !in_frame()
+      elsif !in_frame?
         doc = ThdlIntegration.get_layout_document(:template => options[:template])
         head = doc/'head'
         head.search('title').remove
@@ -129,7 +129,7 @@ module ThdlIntegrationHelper
   
   # this method relies on the authenticated_system plugin
   def login_status
-    if !in_frame()
+    if !in_frame?
       if !logged_in?
         return "#{link_to 'Login', authenticated_system_login_path}."
       else
@@ -150,7 +150,7 @@ module ThdlIntegrationHelper
   end
   
   def side_column
-    if !in_frame()
+    if !in_frame?
       # ($side_column_object%'div#login-status').inner_html = login_status
       (attributes[:side_column_object]%'div#app-vertical-links').inner_html = side_column_links
       attributes[:side_column_object].to_html
