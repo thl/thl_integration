@@ -82,11 +82,15 @@ var frame_service = {
 
 	activate_links: function() {
 		
-		if ( parent_url.length ) {
-			$('a').not('[href^=#], [href*=parent_url]').each( function() {
-				this.href += ( this.href.indexOf('?') > -1 ? '&' : '?' ) + "parent_url=" + parent_url;
-			});
-		}
+		jQuery('a').live('contextmenu click', function(event) {
+			if ( event.which == 3 ) {
+				href = this.href;
+				if ( parent_url.length && href.indexOf('#') != 0 && href.indexOf(parent_url) == -1 ) {
+					this.href += ( href.indexOf('?') > -1 ? '&' : '?' ) + "parent_url=" + parent_url;
+				}
+			}
+			return true;
+		});
 		
 	},
 
