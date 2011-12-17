@@ -54,7 +54,7 @@ module ThdlIntegrationHelper
   end
   
   def loading_animation_script(id)
-    "$(\'##{id}\').css(\'background\', \'url(http://www.thlib.org/global/images/ajax-loader.gif) no-repeat center right\')"
+    "$(\'##{id}\').css(\'background\', \'url(#{ThlSite.get_url}/global/images/ajax-loader.gif) no-repeat center right\')"
   end
 
   def reset_animation_script(id)

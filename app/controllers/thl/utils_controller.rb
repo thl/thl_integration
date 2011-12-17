@@ -8,7 +8,7 @@ class Thl::UtilsController < ApplicationController
     
     url = params[:proxy_url]
     url += '&' + url_params unless url_params.blank?
-    url = "http://www.thlib.org" + url if url[0,1] == "/"
+    url = ThlSite.get_url + url if url[0,1] == "/"
     
     # Any "&"s in the url sent to wiki_reader.php need to be replaced by "%26"
     if url =~ /wiki_reader\.php\?url=/

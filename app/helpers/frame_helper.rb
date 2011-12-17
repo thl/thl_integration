@@ -66,7 +66,7 @@ module FrameHelper
   def frame_css
     if in_frame?
       if css_url = get_css_url()
-      else css_url = "http://www.thlib.org/global/css/thdl-style.css" #temporary solution
+      else css_url = "#{ThlSite.get_url}/global/css/thdl-style.css" #temporary solution
       end
       return stylesheet_link_tag css_url
     end
@@ -82,7 +82,7 @@ module FrameHelper
   end
   
   def www_js
-    return javascript_include_tag 'http://www.thlib.org/global/php/combineJS.php' if in_frame?
+    return javascript_include_tag '#{ThlSite.get_url}/global/php/combineJS.php' if in_frame?
   end
 
   def frame_width
