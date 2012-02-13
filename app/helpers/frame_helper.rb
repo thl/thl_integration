@@ -82,7 +82,7 @@ module FrameHelper
   end
   
   def www_js
-    return javascript_include_tag '#{ThlSite.get_url}/global/php/combineJS.php' if in_frame?
+    return javascript_include_tag "#{ThlSite.get_url}/global/php/combineJS.php" if in_frame?
   end
 
   def frame_width
