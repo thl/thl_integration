@@ -1,7 +1,5 @@
-ActionController::Routing::Routes.draw do |map|
-
-  map.namespace(:thl) do |thl|
-    thl.connect 'utils/proxy/', :controller => 'utils', :action => 'proxy'
+Rails.application.routes.draw do
+  namespace :thl do
+    match 'utils/proxy/' => 'utils#proxy'
   end
-
 end

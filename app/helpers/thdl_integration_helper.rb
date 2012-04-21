@@ -2,7 +2,7 @@ module ThdlIntegrationHelper
   def header(body_attributes = Hash.new)
     frame_init()
     attrs = attributes(:template => body_attributes.delete(:template))
-    return attrs[:html_start] +
+    return (attrs[:html_start] +
            "<title>#{controller.controller_name.humanize}: #{controller.action_name.humanize}</title>\n" +
            "#{www_js}\n" +
            "#{javascripts}\n" +
@@ -15,13 +15,13 @@ module ThdlIntegrationHelper
            "<div id=\"login-status\">" +
            "#{login_status}#{'&nbsp;'*3}" +
            language_option_links +
-           "</div>\n#{attrs[:content_start]}\n#{flash_notice}"
+           "</div>\n#{attrs[:content_start]}\n#{flash_notice}").html_safe
   end
 
   def header_iframe(body_attributes = {:class => 'full-width'})
     frame_init()
     attrs = attributes(:iframe => true)
-    return attrs[:html_start] +
+    return (attrs[:html_start] +
            "<title>#{controller.controller_name.humanize}: #{controller.action_name.humanize}</title>\n" +
            "#{javascripts}\n" +
            "#{frame_js}\n" +
@@ -30,11 +30,11 @@ module ThdlIntegrationHelper
            "#{frame_css}\n" +
            "</head>\n" +
            "<body id=\"body\" #{body_attributes.collect{|at, value| "#{at.to_s}=\"#{value}\""}.join(' ')}>#{attrs[:body_start]}\n" + 
-           "\n#{attrs[:content_start]}\n#{flash_notice({:no_margin => true})}"
+           "\n#{attrs[:content_start]}\n#{flash_notice({:no_margin => true})}").html_safe
   end
     
   def footer
-    return thdl_footer
+    return thdl_footer.html_safe
   end
   
   def stylesheet_files
@@ -42,7 +42,7 @@ module ThdlIntegrationHelper
   end
   
   def javascript_files
-    ['jrails', 'application', 'thl']
+    ['jquery_ujs', 'application', 'thl']
   end
   
   def stylesheets
@@ -50,16 +50,16 @@ module ThdlIntegrationHelper
   end
   
   def javascripts
-    return javascript_include_tag(*javascript_files)
+    return javascript_include_tag(*javascript_files) + csrf_meta_tag
   end
   
   def loading_animation_script(id)
-    "$(\'##{id}\').css(\'background\', \'url(#{ThlSite.get_url}/global/images/ajax-loader.gif) no-repeat center right\')"
+    "$(\'##{id}\').css(\'background\', \'url(#{ThlSite.get_url}/global/images/ajax-loader.gif) no-repeat center right\')".html_safe
   end
 
   def reset_animation_script(id)
     # "$(\'##{id}\').css(\'background\', \'none\')"
-    ''
+    ''.html_safe
   end
   
   private
@@ -106,8 +106,9 @@ module ThdlIntegrationHelper
         body_tag_end = html.index('>', body_tag_start)
         side_column_start = html.index('<!-- begin side column -->')
         attrs[:body_start] = html[body_tag_end+1...side_column_start+26]
-        attrs[:side_column_object] = doc%'div#side-column'
-        (attrs[:side_column_object]/'div#list1').prepend("<div id=\"app-vertical-links\"></div>")
+        side_column_object = doc%'div#side-column'
+        (side_column_object/'div#list1').prepend("<div id=\"app-vertical-links\"></div>")
+        attrs[:side_column] = side_column_object.to_html
         content_html = content.to_html
         relative_content_end = content_html.index('</')
         post_sidenav_start = html.index('<!-- end side column -->')
@@ -153,8 +154,9 @@ module ThdlIntegrationHelper
   def side_column
     if !in_frame?
       # ($side_column_object%'div#login-status').inner_html = login_status
-      (attributes[:side_column_object]%'div#app-vertical-links').inner_html = side_column_links
-      attributes[:side_column_object].to_html
+      side_column_object = Hpricot(attributes[:side_column])
+      (side_column_object%'div#app-vertical-links').inner_html = side_column_links
+      side_column_object.to_html
     end
   end
   
