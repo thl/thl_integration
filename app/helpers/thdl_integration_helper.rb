@@ -42,7 +42,7 @@ module ThdlIntegrationHelper
   end
   
   def javascript_files
-    ['jquery_ujs', 'application', 'thl']
+    ['jquery', 'jquery_ujs', 'application', 'thl']
   end
   
   def stylesheets
