@@ -5,7 +5,7 @@ module ThlCookie
   end
   
   def self.session_secret
-    secret_file = File.join(RAILS_ROOT, "secret.txt")
+    secret_file = Rails.root.join('secret.txt')
     if File.exist?(secret_file)
       secret = File.read(secret_file)
     else
