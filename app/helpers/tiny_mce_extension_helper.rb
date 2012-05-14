@@ -172,7 +172,7 @@ module TinyMceExtensionHelper
   str += "});" + "\n"
   str += "//]]>" + "\n"
   str += "</script> "
-  return str 
+  return str.html_safe
   end
   
   def wide_tagged_tinymce_script
@@ -347,7 +347,7 @@ module TinyMceExtensionHelper
   str += "});" + "\n"
   str += "//]]>" + "\n"
   str += "</script> "
-  return str 
+  return str.html_safe
   end  
   
   def enhanced_tinymce_script
@@ -379,7 +379,7 @@ module TinyMceExtensionHelper
   str += "});" + "\n"
   str += "//]]>" + "\n"
   str += "</script> "
-  return str 
+  return str.html_safe
   end
 end
   
