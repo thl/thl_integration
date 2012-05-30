@@ -55,7 +55,7 @@ module FrameHelper
     u += '://'
     u += request.host
     u += ":#{request.port}" unless request.port.blank?
-    u += request.request_uri
+    u += request.fullpath
     return u
   end
 
