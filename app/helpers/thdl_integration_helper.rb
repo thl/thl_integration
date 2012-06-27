@@ -53,6 +53,15 @@ module ThdlIntegrationHelper
     return javascript_include_tag(*javascript_files) + csrf_meta_tag
   end
   
+  def javascript_on_load(*args, &block)
+    if block_given?
+      content = with_output_buffer(&block)
+      javascript_tag "$(document).ready(function(){#{content}})"
+    else
+      javascript_tag "$(document).ready(function(){#{args.first}})"
+    end
+  end
+  
   def loading_animation_script(id)
     "$(\'##{id}\').css(\'background\', \'url(#{ThlSite.get_url}/global/images/ajax-loader.gif) no-repeat center right\')".html_safe
   end
