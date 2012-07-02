@@ -62,13 +62,12 @@ module ThdlIntegrationHelper
     end
   end
   
-  def loading_animation_script(id)
-    "$(\'##{id}\').css(\'background\', \'url(#{ThlSite.get_url}/global/images/ajax-loader.gif) no-repeat center right\')".html_safe
+  def loading_animation_script(selector)
+    "$(\'#{selector}\').css(\'background\', \'url(#{ThlSite.get_url}/global/images/ajax-loader.gif) no-repeat center right\')".html_safe
   end
 
-  def reset_animation_script(id)
-    # "$(\'##{id}\').css(\'background\', \'none\')"
-    ''.html_safe
+  def reset_animation_script(selector)
+    "$(\'#{selector}\').css(\'background\', \'none\')".html_safe
   end
   
   private

@@ -1,7 +1,7 @@
 require 'active_support'
 module ThlCookie
   def self.session_key
-    'thl_session'
+    '_thl_session'
   end
   
   def self.session_secret
