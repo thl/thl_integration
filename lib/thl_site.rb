@@ -7,7 +7,7 @@ module ThlSite
         @@url = 'http://staging.thlib.org'
       elsif hostname == 'dev.thlib.org'
         @@url = 'http://dev.thlib.org'
-      elsif hostname =~ /sds[3-8].itc.virginia.edu/
+      elsif hostname =~ /sds.+\.itc\.virginia\.edu/
         @@url = 'http://www.thlib.org'
       else
         @@url = 'http://www.thlib.org'

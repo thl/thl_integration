@@ -2,12 +2,12 @@
 module ThdlIntegration
   def self.get_layout_document(options = Hash.new)
     hostname = Socket.gethostname.downcase
-    if hostname =~ /sds[3-578].itc.virginia.edu/
-      headers = { 'Host' => 'www.thlib.org' }
-      domain = '127.0.0.1'
-    elsif hostname == 'sds6.itc.virginia.edu'
+    if hostname == 'sds6.itc.virginia.edu'
       headers = {}
       domain = 'staging.thlib.org'
+    elsif hostname =~ /sds.+\.itc\.virginia\.edu/
+      headers = { 'Host' => 'www.thlib.org' }
+      domain = '127.0.0.1'
     elsif hostname == 'dev.thlib.org'
       headers = {}
       domain = 'dev.thlib.org'
