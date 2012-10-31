@@ -78,7 +78,7 @@ module FrameHelper
   end
 
   def frame_js
-    return javascript_include_tag 'service_plug' if in_frame?
+    return javascript_include_tag 'thl_integration/service_plug' if in_frame?
   end
   
   def www_js

@@ -10,7 +10,7 @@ module TinyMceExtensionHelper
   str += "noneditable_leave_contenteditable : 'true'," + "\n"
   str += "plugins : 'contextmenu,paste,media,fullscreen,template,noneditable, table, spellchecker'," + "\n"
   str += "template_external_list_url : '/templates/templates.js'," + "\n"
-  str += "content_css : '/stylesheets/customtinymce.css'," + "\n"
+  str += "content_css : '#{stylesheet_path('thl_integration/customtinymce')}'," + "\n"
   str += "theme : 'advanced'," + "\n"
   str += "theme_advanced_blockformats : 'p,h1,h2,h3,h4,h5,h6'," + "\n"
   str += "theme_advanced_buttons1 : ' fullscreen,separator,bold,italic,underline,strikethrough,separator,undo,redo,separator,link,unlink,template,formatselect, code'," + "\n"
@@ -29,7 +29,7 @@ module TinyMceExtensionHelper
   str += "width : '430px',"  + "\n"
   str += "setup : function(ed) {" + "\n"
   str += "// Add Event button"  + "\n"
-  str += "  ed.addButton('EventButton', { title : 'Event Tag', image : '/images/Evt3.gif',
+  str += "  ed.addButton('EventButton', { title : 'Event Tag', image : '#{image_path('thl_integration/Evt3.gif')}',
                                   onclick : function() {
                                       var title_name = prompt('Type in ID (optional)', 'Type ID here');
                                       if (title_name != null){
@@ -40,7 +40,7 @@ module TinyMceExtensionHelper
                                   }
                       });//EventButton" +"\n"                
   str += "// Add Map button" + "\n"
-  str += "  ed.addButton('MapButton', { title : 'Map Tag', image : '/images/Map3.gif',
+  str += "  ed.addButton('MapButton', { title : 'Map Tag', image : '#{image_path('thl_integration/Map3.gif')}',
                       								onclick : function() {
                       									var title_name = prompt('Type in ID (optional)', 'Type ID here');
                       									if (title_name != null){
@@ -51,7 +51,7 @@ module TinyMceExtensionHelper
                       								}
                       					});	//MapButton" + "\n"
   str += "// Add Ref button" + "\n"
-  str += "  ed.addButton('RefButton', { title : 'Ref Tag', image : '/images/Ref3.gif',
+  str += "  ed.addButton('RefButton', { title : 'Ref Tag', image : '#{image_path('thl_integration/Ref3.gif')}',
                       								onclick : function() {
                       									var title_name = prompt('Type in ID (optional)', 'Type ID here');
                       									if (title_name != null){
@@ -63,7 +63,7 @@ module TinyMceExtensionHelper
                       					});	//RefButton" + "\n"
 
   str += "// Add Place button" + "\n"
-  str += "  ed.addButton('PlaceButton', { title : 'Place Tag', image : '/images/Pla3.gif',
+  str += "  ed.addButton('PlaceButton', { title : 'Place Tag', image : '#{image_path('thl_integration/Pla3.gif')}',
                       								onclick : function() {
                       									var title_name = prompt('Type in ID (optional)', 'Type ID here');
                       									if (title_name != null){
@@ -74,7 +74,7 @@ module TinyMceExtensionHelper
                       								}
                       				}); //PlaceButton" + "\n"
   str += "// Add Person button" + "\n"				
-  str += "  ed.addButton('PersonButton', { title : 'Person Tag', image : '/images/Per3.gif',
+  str += "  ed.addButton('PersonButton', { title : 'Person Tag', image : '#{image_path('thl_integration/Per3.gif')}',
                       								onclick : function() {
                       									var title_name = prompt('Type in ID (optional)', 'Type ID here');
                       									if (title_name != null){
@@ -85,7 +85,7 @@ module TinyMceExtensionHelper
                       								}
                       				});	//PersonButton" + "\n"
   str += "// Add Org button" + "\n"
-  str += "  ed.addButton('OrgButton', { title : 'Organization Tag', image : '/images/Org3.gif',
+  str += "  ed.addButton('OrgButton', { title : 'Organization Tag', image : '#{image_path('thl_integration/Org3.gif')}',
                       								onclick : function() {
                       									var title_name = prompt('Type in ID (optional)', 'Type ID here');
                       									//if (title_name){
@@ -98,7 +98,7 @@ module TinyMceExtensionHelper
                       								}
                       				});	//OrgButton" + "\n"
   str += "// Add Project button" + "\n"				
-  str += "  ed.addButton('ProjectButton', { title : 'Project Tag', image : '/images/Pro3.gif',
+  str += "  ed.addButton('ProjectButton', { title : 'Project Tag', image : '#{image_path('thl_integration/Pro3.gif')}',
                       								onclick : function() {
                       									var title_name = prompt('Type in ID (optional)', 'Type ID here');
                       									if (title_name != null){
@@ -109,7 +109,7 @@ module TinyMceExtensionHelper
                       								}
                       				});	//ProjectButton" + "\n"															
   str += "// Add Himalayan button" + "\n"				
-  str += "  ed.addButton('HimalayanButton', { title : 'Himalayan Tag', image : '/images/Him3.gif',
+  str += "  ed.addButton('HimalayanButton', { title : 'Himalayan Tag', image : '#{image_path('thl_integration/Him3.gif')}',
                       								onclick : function() {
                       									var title_name = prompt('Type in ID (optional)', 'Type ID here');
                       									if (title_name != null){
@@ -120,7 +120,7 @@ module TinyMceExtensionHelper
                       								}
                       				});	//HimalayanButton" + "\n"						
   str += "// Add Tibetan button" + "\n"				
-  str += "  ed.addButton('TibetanButton', { title : 'Tibetan Tag', image : '/images/Tib3.gif',
+  str += "  ed.addButton('TibetanButton', { title : 'Tibetan Tag', image : '#{image_path('thl_integration/Tib3.gif')}',
                       								onclick : function() {
                       									var title_name = prompt('Type in ID (optional)', 'Type ID here');
                       									if (title_name != null){
@@ -131,7 +131,7 @@ module TinyMceExtensionHelper
                       								}
                       				});	//TibetanButton" + "\n"	
   str += "// Add Topic button" + "\n"				
-  str += "  ed.addButton('TopicButton', { title : 'Topic Tag', image : '/images/Top3.gif',
+  str += "  ed.addButton('TopicButton', { title : 'Topic Tag', image : '#{image_path('thl_integration/Top3.gif')}',
                       								onclick : function() {
                       									var title_name = prompt('Type in ID (optional)', 'Type ID here');
                       									if (title_name != null){
@@ -142,7 +142,7 @@ module TinyMceExtensionHelper
                       								}
                       				});	//TopicButton" + "\n"				
   str += "// Add TibText button" + "\n"				
-  str += "  ed.addButton('TibTextButton', { title : 'TibText Tag', image : '/images/Txt3.gif',
+  str += "  ed.addButton('TibTextButton', { title : 'TibText Tag', image : '#{image_path('thl_integration/Txt3.gif')}',
                       								onclick : function() {
                       									var title_name = prompt('Type in ID (optional)', 'Type ID here');
                       									if (title_name != null){
@@ -153,7 +153,7 @@ module TinyMceExtensionHelper
                       								}
                       				});	//TibTextButton" + "\n"                                                
   str += "// Add Prose Formatting button"  + "\n"
-  str += "  ed.addButton('ProseButton', { title : 'Prose Citation', image : '/images/PROSE.gif',
+  str += "  ed.addButton('ProseButton', { title : 'Prose Citation', image : '#{image_path('thl_integration/PROSE.gif')}',
                                       onclick : function() {
                                         ed.focus();
                                         var current_selection = ed.selection.getContent();
@@ -161,7 +161,7 @@ module TinyMceExtensionHelper
                                         }
                               });//ProseButton" +"\n"  
   str += "// Add Verse Formatting button"  + "\n"
-                              str += "  ed.addButton('VerseButton', { title : 'Verse Citation', image : '/images/VERSE.gif',
+                              str += "  ed.addButton('VerseButton', { title : 'Verse Citation', image : '#{image_path('thl_integration/VERSE.gif')}',
                                       onclick : function() {
                                         ed.focus();
                                         var current_selection = ed.selection.getContent();
@@ -185,7 +185,7 @@ module TinyMceExtensionHelper
   str += "noneditable_leave_contenteditable : 'true'," + "\n"
   str += "plugins : 'contextmenu,paste,media,fullscreen,template,noneditable, table, spellchecker'," + "\n"
   str += "template_external_list_url : '/templates/templates.js'," + "\n"
-  str += "content_css : '/stylesheets/customtinymce.css'," + "\n"
+  str += "content_css : '#{stylesheet_path('thl_integration/customtinymce')}'," + "\n"
   str += "theme : 'advanced'," + "\n"
   str += "theme_advanced_blockformats : 'p,h1,h2,h3,h4,h5,h6'," + "\n"
   str += "theme_advanced_buttons1 : ' fullscreen,separator,bold,italic,underline,strikethrough,separator,undo,redo,separator,link,unlink,template,formatselect, code'," + "\n"
@@ -204,7 +204,7 @@ module TinyMceExtensionHelper
   str += "width : '630px',"  + "\n"
   str += "setup : function(ed) {" + "\n"
   str += "// Add Event button"  + "\n"
-  str += "  ed.addButton('EventButton', { title : 'Event Tag', image : '/images/Evt3.gif',
+  str += "  ed.addButton('EventButton', { title : 'Event Tag', image : '#{image_path('thl_integration/Evt3.gif')}',
                                   onclick : function() {
                                       var title_name = prompt('Type in ID (optional)', 'Type ID here');
                                       if (title_name != null){
@@ -215,7 +215,7 @@ module TinyMceExtensionHelper
                                   }
                       });//EventButton" +"\n"                
   str += "// Add Map button" + "\n"
-  str += "  ed.addButton('MapButton', { title : 'Map Tag', image : '/images/Map3.gif',
+  str += "  ed.addButton('MapButton', { title : 'Map Tag', image : '#{image_path('thl_integration/Map3.gif')}',
                       								onclick : function() {
                       									var title_name = prompt('Type in ID (optional)', 'Type ID here');
                       									if (title_name != null){
@@ -226,7 +226,7 @@ module TinyMceExtensionHelper
                       								}
                       					});	//MapButton" + "\n"
   str += "// Add Ref button" + "\n"
-  str += "  ed.addButton('RefButton', { title : 'Ref Tag', image : '/images/Ref3.gif',
+  str += "  ed.addButton('RefButton', { title : 'Ref Tag', image : '#{image_path('thl_integration/Ref3.gif')}',
                       								onclick : function() {
                       									var title_name = prompt('Type in ID (optional)', 'Type ID here');
                       									if (title_name != null){
@@ -238,7 +238,7 @@ module TinyMceExtensionHelper
                       					});	//RefButton" + "\n"
 
   str += "// Add Place button" + "\n"
-  str += "  ed.addButton('PlaceButton', { title : 'Place Tag', image : '/images/Pla3.gif',
+  str += "  ed.addButton('PlaceButton', { title : 'Place Tag', image : '#{image_path('thl_integration/Pla3.gif')}',
                       								onclick : function() {
                       									var title_name = prompt('Type in ID (optional)', 'Type ID here');
                       									if (title_name != null){
@@ -249,7 +249,7 @@ module TinyMceExtensionHelper
                       								}
                       				}); //PlaceButton" + "\n"
   str += "// Add Person button" + "\n"				
-  str += "  ed.addButton('PersonButton', { title : 'Person Tag', image : '/images/Per3.gif',
+  str += "  ed.addButton('PersonButton', { title : 'Person Tag', image : '#{image_path('thl_integration/Per3.gif')}',
                       								onclick : function() {
                       									var title_name = prompt('Type in ID (optional)', 'Type ID here');
                       									if (title_name != null){
@@ -260,7 +260,7 @@ module TinyMceExtensionHelper
                       								}
                       				});	//PersonButton" + "\n"
   str += "// Add Org button" + "\n"
-  str += "  ed.addButton('OrgButton', { title : 'Organization Tag', image : '/images/Org3.gif',
+  str += "  ed.addButton('OrgButton', { title : 'Organization Tag', image : '#{image_path('thl_integration/Org3.gif')}',
                       								onclick : function() {
                       									var title_name = prompt('Type in ID (optional)', 'Type ID here');
                       									//if (title_name){
@@ -273,7 +273,7 @@ module TinyMceExtensionHelper
                       								}
                       				});	//OrgButton" + "\n"
   str += "// Add Project button" + "\n"				
-  str += "  ed.addButton('ProjectButton', { title : 'Project Tag', image : '/images/Pro3.gif',
+  str += "  ed.addButton('ProjectButton', { title : 'Project Tag', image : '#{image_path('thl_integration/Pro3.gif')}',
                       								onclick : function() {
                       									var title_name = prompt('Type in ID (optional)', 'Type ID here');
                       									if (title_name != null){
@@ -284,7 +284,7 @@ module TinyMceExtensionHelper
                       								}
                       				});	//ProjectButton" + "\n"															
   str += "// Add Himalayan button" + "\n"				
-  str += "  ed.addButton('HimalayanButton', { title : 'Himalayan Tag', image : '/images/Him3.gif',
+  str += "  ed.addButton('HimalayanButton', { title : 'Himalayan Tag', image : '#{image_path('thl_integration/Him3.gif')}',
                       								onclick : function() {
                       									var title_name = prompt('Type in ID (optional)', 'Type ID here');
                       									if (title_name != null){
@@ -295,7 +295,7 @@ module TinyMceExtensionHelper
                       								}
                       				});	//HimalayanButton" + "\n"						
   str += "// Add Tibetan button" + "\n"				
-  str += "  ed.addButton('TibetanButton', { title : 'Tibetan Tag', image : '/images/Tib3.gif',
+  str += "  ed.addButton('TibetanButton', { title : 'Tibetan Tag', image : '#{image_path('thl_integration/Tib3.gif')}',
                       								onclick : function() {
                       									var title_name = prompt('Type in ID (optional)', 'Type ID here');
                       									if (title_name != null){
@@ -306,7 +306,7 @@ module TinyMceExtensionHelper
                       								}
                       				});	//TibetanButton" + "\n"	
   str += "// Add Topic button" + "\n"				
-  str += "  ed.addButton('TopicButton', { title : 'Topic Tag', image : '/images/Top3.gif',
+  str += "  ed.addButton('TopicButton', { title : 'Topic Tag', image : '#{image_path('thl_integration/Top3.gif')}',
                       								onclick : function() {
                       									var title_name = prompt('Type in ID (optional)', 'Type ID here');
                       									if (title_name != null){
@@ -317,7 +317,7 @@ module TinyMceExtensionHelper
                       								}
                       				});	//TopicButton" + "\n"				
   str += "// Add TibText button" + "\n"				
-  str += "  ed.addButton('TibTextButton', { title : 'TibText Tag', image : '/images/Txt3.gif',
+  str += "  ed.addButton('TibTextButton', { title : 'TibText Tag', image : '#{image_path('thl_integration/Txt3.gif')}',
                       								onclick : function() {
                       									var title_name = prompt('Type in ID (optional)', 'Type ID here');
                       									if (title_name != null){
@@ -328,7 +328,7 @@ module TinyMceExtensionHelper
                       								}
                       				});	//TibTextButton" + "\n"                                                
   str += "// Add Prose Formatting button"  + "\n"
-  str += "  ed.addButton('ProseButton', { title : 'Prose Citation', image : '/images/PROSE.gif',
+  str += "  ed.addButton('ProseButton', { title : 'Prose Citation', image : '#{image_path('thl_integration/PROSE.gif')}',
                                       onclick : function() {
                                         ed.focus();
                                         var current_selection = ed.selection.getContent();
@@ -336,7 +336,7 @@ module TinyMceExtensionHelper
                                         }
                               });//ProseButton" +"\n"  
   str += "// Add Verse Formatting button"  + "\n"
-  str += "  ed.addButton('VerseButton', { title : 'Verse Citation', image : '/images/VERSE.gif',
+  str += "  ed.addButton('VerseButton', { title : 'Verse Citation', image : '#{image_path(thl_integration/VERSE.gif)}',
                                       onclick : function() {
                                         ed.focus();
                                         var current_selection = ed.selection.getContent();
@@ -360,7 +360,7 @@ module TinyMceExtensionHelper
   str += "noneditable_leave_contenteditable : 'true'," + "\n"
   str += "plugins : 'contextmenu,paste,media,fullscreen,template,noneditable, table, spellchecker'," + "\n"
   str += "template_external_list_url : '/templates/templates.js'," + "\n"
-  str += "content_css : '/stylesheets/customtinymce.css'," + "\n"
+  str += "content_css : '#{stylesheet_path('thl_integration/customtinymce')}'," + "\n"
   str += "theme : 'advanced'," + "\n"
   str += "theme_advanced_blockformats : 'p,h1,h2,h3,h4,h5,h6'," + "\n"
   str += "theme_advanced_buttons1 : ' fullscreen,separator,bold,italic,underline,strikethrough,separator,undo,redo,separator,link,unlink,template,formatselect, code'," + "\n"

@@ -1,4 +1,4 @@
-require 'active_support'
+require 'securerandom'
 module ThlCookie
   def self.session_key
     '_thl_session'
@@ -9,7 +9,7 @@ module ThlCookie
     if File.exist?(secret_file)
       secret = File.read(secret_file)
     else
-      secret = ActiveSupport::SecureRandom.hex(64)
+      secret = SecureRandom.hex(64)
       File.open(secret_file, 'w') { |f| f.write(secret) }
     end
     secret
