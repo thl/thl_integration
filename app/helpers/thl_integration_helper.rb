@@ -9,6 +9,7 @@ module ThlIntegrationHelper
            "#{frame_js}\n" +
            "\n#{stylesheet_link_tag stylesheet_files}\n" +
            "#{frame_css}\n" +
+           "#{csrf_meta_tags}\n" +
            ( in_frame? ? "<style type='text/css'>#TB_window { top: 25% !important }</style>\n" : "" ) +
            "</head>\n" +
            "<body #{body_attributes.collect{|at, value| "#{at.to_s}=\"#{value}\""}.join(' ')}>#{attrs[:body_start]}\n#{side_column}\n#{attrs[:post_side_column]}" + 
