@@ -7,7 +7,7 @@ module ThlIntegrationHelper
            "#{www_js}\n" +
            "#{javascript_include_tag javascript_files}\n" +
            "#{frame_js}\n" +
-           "\n#{stylesheet_link_tag stylesheet_files}\n" +
+           "#{stylesheet_link_tag stylesheet_files}\n" +
            "#{frame_css}\n" +
            "#{csrf_meta_tags}\n" +
            ( in_frame? ? "<style type='text/css'>#TB_window { top: 25% !important }</style>\n" : "" ) +
@@ -24,11 +24,12 @@ module ThlIntegrationHelper
     attrs = attributes(:iframe => true)
     return (attrs[:html_start] +
            "<title>#{controller.controller_name.humanize}: #{controller.action_name.humanize}</title>\n" +
-           "#{javascripts}\n" +
+           "#{javascript_include_tag javascript_files}\n" +
            "#{frame_js}\n" +
-           "#{stylesheets}\n" +
+           "#{stylesheet_link_tag stylesheet_files}\n" +
            "#{stylesheet_link_tag('iframe')}\n" +
            "#{frame_css}\n" +
+           "#{csrf_meta_tags}\n" +
            "</head>\n" +
            "<body id=\"body\" #{body_attributes.collect{|at, value| "#{at.to_s}=\"#{value}\""}.join(' ')}>#{attrs[:body_start]}\n" + 
            "\n#{attrs[:content_start]}\n#{flash_notice({:no_margin => true})}").html_safe
