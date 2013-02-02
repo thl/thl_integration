@@ -1,13 +1,15 @@
 module ThlIntegrationHelper
   def header(body_attributes = Hash.new)
     frame_init()
+    js_files = body_attributes.delete(:javascript_files)
+    css_files = body_attributes.delete(:stylesheet_files)
     attrs = attributes(:template => body_attributes.delete(:template))
     return (attrs[:html_start] +
            "<title>#{controller.controller_name.humanize}: #{controller.action_name.humanize}</title>\n" +
            "#{www_js}\n" +
-           "#{javascript_include_tag javascript_files}\n" +
+           "#{javascript_include_tag(*(js_files.nil? ? javascript_files : javascript_files + js_files))}\n" +
            "#{frame_js}\n" +
-           "#{stylesheet_link_tag stylesheet_files}\n" +
+           "#{stylesheet_link_tag(*(css_files.nil? ? stylesheet_files : stylesheet_files + css_files))}\n" +
            "#{frame_css}\n" +
            "#{csrf_meta_tags}\n" +
            ( in_frame? ? "<style type='text/css'>#TB_window { top: 25% !important }</style>\n" : "" ) +
@@ -27,7 +29,7 @@ module ThlIntegrationHelper
            "#{javascript_include_tag javascript_files}\n" +
            "#{frame_js}\n" +
            "#{stylesheet_link_tag stylesheet_files}\n" +
-           "#{stylesheet_link_tag('iframe')}\n" +
+           "#{stylesheet_link_tag('thl_integration/iframe')}\n" +
            "#{frame_css}\n" +
            "#{csrf_meta_tags}\n" +
            "</head>\n" +
@@ -45,15 +47,6 @@ module ThlIntegrationHelper
   
   def javascript_files
     ['application']
-  end
-  
-  def javascript_on_load(*args, &block)
-    if block_given?
-      content = with_output_buffer(&block)
-      javascript_tag "$(document).ready(function(){#{content}})"
-    else
-      javascript_tag "$(document).ready(function(){#{args.first}})"
-    end
   end
   
   def loading_animation_script(selector)

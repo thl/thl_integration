@@ -2,6 +2,7 @@ require "thl_integration/engine"
 require 'open-uri'
 require 'thl_cookie'
 require 'thl_site'
+require 'csv_importation'
 
 # The following are loaded automatically
 #ActionView::Base.send :include, ThlIntegrationHelper

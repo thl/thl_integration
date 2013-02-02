@@ -84,7 +84,7 @@ var frame_service = {
 		
 		// this is a way to add the parent_url arg to dynamically generated links at the click moment
 		
-		jQuery('a').live('contextmenu click', function(event) {
+		jQuery('a').on('contextmenu click', function(event) {
 			href = frame_service.rewrite_links(this.href);
 			this.href = href;
 			if ( event.which == 3 ) {
