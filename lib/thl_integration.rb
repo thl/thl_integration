@@ -1,8 +1,7 @@
 require "thl_integration/engine"
 require 'open-uri'
 require 'thl_cookie'
-require 'thl_site'
-require 'csv_importation'
+require 'thl_integration/site'
 
 # The following are loaded automatically
 #ActionView::Base.send :include, ThlIntegrationHelper
@@ -11,16 +10,16 @@ require 'csv_importation'
 
 module ThlIntegration
   def self.get_layout_document(options = Hash.new)
-    hostname = Socket.gethostname.downcase
-    if hostname == 'sds6.itc.virginia.edu'
-      headers = {}
-      domain = 'staging.thlib.org'
-    elsif hostname =~ /sds.+\.itc\.virginia\.edu/
-      headers = { 'Host' => 'www.thlib.org' }
-      domain = '127.0.0.1'
-    elsif hostname == 'dev.thlib.org'
+    case InterfaceUtils::Server.environment
+    when InterfaceUtils::Server::DEVELOPMENT
       headers = {}
       domain = 'dev.thlib.org'
+    when InterfaceUtils::Server::STAGING
+      headers = {}
+      domain = 'staging.thlib.org'
+    when InterfaceUtils::Server::PRODUCTION
+      headers = { 'Host' => 'www.thlib.org' }
+      domain = '127.0.0.1'
     else
       headers = {}
       domain = 'www.thlib.org'

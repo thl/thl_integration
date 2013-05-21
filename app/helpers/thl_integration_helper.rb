@@ -1,11 +1,17 @@
 module ThlIntegrationHelper
+  def google_maps_key
+    'ABQIAAAAmlH3GDvD6dTOdZjfrfvLFxTkTKGJ2QQt6wuPk9SnktO8U_sCzxTyz_WwKoSJx63MPLV9q8gn8KCNtg'
+    # InterfaceUtils::Server.environment == InterfaceUtils::Server::EBHUTAN ? 'ABQIAAAA-y3Dt_UxbO4KSyjAYViOChQYlycRhKSCRlUWwdm5YkcOv9JZvxQ7K1N-weCz0Vvcplc8v8TOVZ4lEQ'
+  end
+  
   def header(body_attributes = Hash.new)
     frame_init()
     js_files = body_attributes.delete(:javascript_files)
     css_files = body_attributes.delete(:stylesheet_files)
+    title = body_attributes.delete(:title) || "#{controller.controller_name.humanize}: #{controller.action_name.humanize}"
     attrs = attributes(:template => body_attributes.delete(:template))
     return (attrs[:html_start] +
-           "<title>#{controller.controller_name.humanize}: #{controller.action_name.humanize}</title>\n" +
+           "<title>#{title}</title>\n" +
            "#{www_js}\n" +
            "#{javascript_include_tag(*(js_files.nil? ? javascript_files : javascript_files + js_files))}\n" +
            "#{frame_js}\n" +
@@ -50,7 +56,7 @@ module ThlIntegrationHelper
   end
   
   def loading_animation_script(selector)
-    "$(\'#{selector}\').css(\'background\', \'url(#{ThlSite.get_url}/global/images/ajax-loader.gif) no-repeat center right\')".html_safe
+    "$(\'#{selector}\').css(\'background\', \'url(#{InterfaceUtils::Server.get_url}/global/images/ajax-loader.gif) no-repeat center right\')".html_safe
   end
 
   def reset_animation_script(selector)
@@ -123,25 +129,7 @@ module ThlIntegrationHelper
       attrs
     end
   end  
-  
-  # this method relies on the authenticated_system plugin
-  def login_status
-    if !in_frame?
-      if !logged_in?
-        return "#{link_to 'Login', authenticated_system_login_path}."
-      else
-        return "#{current_user.login}. #{link_to 'Logout', authenticated_system_logout_path}."
-      end
-    else
-      return ''
-    end
-  end
-  
-  # this method relies on the complex scripts plugin
-  def language_option_links
-    render(:partial => 'sessions/language_options')
-  end
-  
+      
   def content_end
     attributes[:content_end]
   end
