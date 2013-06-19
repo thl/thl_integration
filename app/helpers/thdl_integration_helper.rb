@@ -42,7 +42,7 @@ module ThdlIntegrationHelper
   end
   
   def javascript_files
-    ['rails', 'application', 'thl'] # 'jquery_ujs'
+    [:defaults, 'thl'] # 'jquery_ujs'
   end
   
   def stylesheets
