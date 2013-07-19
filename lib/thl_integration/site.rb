@@ -9,5 +9,9 @@ module InterfaceUtils
         end
       end
     end
+    
+    def self.get_domain
+      'thlib.org'
+    end
   end
 end

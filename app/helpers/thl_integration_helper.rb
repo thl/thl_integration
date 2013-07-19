@@ -4,6 +4,41 @@ module ThlIntegrationHelper
     # InterfaceUtils::Server.environment == InterfaceUtils::Server::EBHUTAN ? 'ABQIAAAA-y3Dt_UxbO4KSyjAYViOChQYlycRhKSCRlUWwdm5YkcOv9JZvxQ7K1N-weCz0Vvcplc8v8TOVZ4lEQ'
   end
   
+  def primary_tabs_list
+    [
+      {
+        :id => :places,
+        :title => "Places",
+        :app => :places,
+        :url => defined?(PlacesIntegration::PlacesResource.get_url) ? PlacesIntegration::PlacesResource.get_url : false
+      },
+      {
+        :id => :topics,
+        :title => Category.human_name(:count => :many).titleize.s,
+        :app => :topics,
+        :url => defined?(TopicalMapResource.get_url) ? TopicalMapResource.get_url : false
+      },
+      {
+        :id => :media,
+        :title => Medium.human_name(:count => :many).titleize.s,
+        :app => :media,
+        :url => defined?(MediaManagementResource.get_url) ? MediaManagementResource.get_url : root_path
+      },
+      {
+        :id => :dictionary,
+        :title => "Tibetan",
+        :app => :dictionary,
+        :url => defined?(DictionarySite.get_url) ? DictionarySite.get_url : false
+      },
+      {
+        :id => :himalayan_search,
+        :title => "Himalayan",
+        :app => :himalayan_search,
+        :url => (defined?(MediaManagementResource.get_url) ? MediaManagementResource.get_url : root_path) + 'dictionary_searches/new'
+      }
+    ]
+  end
+  
   def header(body_attributes = Hash.new)
     frame_init()
     js_files = body_attributes.delete(:javascript_files)
