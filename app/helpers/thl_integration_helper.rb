@@ -1,6 +1,6 @@
 module ThlIntegrationHelper
   def google_maps_key
-    'ABQIAAAAmlH3GDvD6dTOdZjfrfvLFxTkTKGJ2QQt6wuPk9SnktO8U_sCzxTyz_WwKoSJx63MPLV9q8gn8KCNtg'
+    'AIzaSyB7IlhcOYVWmvJOPZDYWCBAc4ZXDlH7r6Q'
     # InterfaceUtils::Server.environment == InterfaceUtils::Server::EBHUTAN ? 'ABQIAAAA-y3Dt_UxbO4KSyjAYViOChQYlycRhKSCRlUWwdm5YkcOv9JZvxQ7K1N-weCz0Vvcplc8v8TOVZ4lEQ'
   end
   
@@ -14,13 +14,13 @@ module ThlIntegrationHelper
       },
       {
         :id => :topics,
-        :title => Category.human_name(:count => :many).titleize.s,
+        :title => defined?(SubjectsIntegration) ? SubjectsIntegration::Feature.human_name(:count => :many).titleize.s : Feature.model_name.human(:count => :many).titleize.s,
         :app => :topics,
-        :url => defined?(TopicalMapResource.get_url) ? TopicalMapResource.get_url : false
+        :url => defined?(SubjectsIntegration::SubjectsResource.get_url) ? SubjectsIntegration::SubjectsResource.get_url : false
       },
       {
         :id => :media,
-        :title => Medium.human_name(:count => :many).titleize.s,
+        :title => MmsIntegration::Medium.human_name(:count => :many).titleize.s,
         :app => :media,
         :url => defined?(MediaManagementResource.get_url) ? MediaManagementResource.get_url : root_path
       },
