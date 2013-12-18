@@ -14,13 +14,13 @@ module ThlIntegrationHelper
       },
       {
         :id => :topics,
-        :title => defined?(SubjectsIntegration) ? SubjectsIntegration::Feature.human_name(:count => :many).titleize.s : Feature.model_name.human(:count => :many).titleize.s,
+        :title => defined?(SubjectsIntegration) ? SubjectsIntegration::Feature.human_name(:count => :many).titleize.s : (defined?(Feature) ? Feature.model_name.human(:count => :many).titleize.s : Category.human_name(:count => :many).titleize.s),
         :app => :topics,
         :url => defined?(SubjectsIntegration::SubjectsResource.get_url) ? SubjectsIntegration::SubjectsResource.get_url : false
       },
       {
         :id => :media,
-        :title => MmsIntegration::Medium.human_name(:count => :many).titleize.s,
+        :title => defined?(MmsIntegration) ? MmsIntegration::Medium.human_name(:count => :many).titleize.s : Medium.model_name.human(:count => :many).titleize.s,
         :app => :media,
         :url => defined?(MediaManagementResource.get_url) ? MediaManagementResource.get_url : root_path
       },
