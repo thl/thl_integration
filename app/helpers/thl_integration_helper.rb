@@ -107,7 +107,7 @@ module ThlIntegrationHelper
     elsif in_frame?
       cache_key << '-in-frame'
     end
-    Rails.cache.fetch(cache_key) do
+    Rails.cache.fetch(cache_key, :expires_in => 1.day) do
       attrs = {}
       if options[:iframe]
         doc = ThlIntegration.get_layout_document({:template => 'index-offsite-iframe'})
