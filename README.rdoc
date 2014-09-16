@@ -43,10 +43,14 @@ module ApplicationHelper
   def side_column_links
     str = "<h3 class=\"head\">#{link_to 'Topical Map Builder', '#nogo', {:hreflang => 'Manage hierarchical controlled vocabulary to be used by other applications.'}}</h3>\n<ul>\n"
     str += "<li>#{link_to 'Categories', root_path, {:hreflang => 'Lists all categories.'}}</li>\n"
-    authorized_only(hash_for_languages_path) { str += "<li>#{link_to 'Languages', languages_path, {:hreflang => 'Manage languages used for translation of titles and interface.'}}</li>\n" }
-    authorized_only(hash_for_users_path) { str += "<li>#{link_to 'Users', users_path, {:hreflang => 'Manage users and their roles.'}}</li>\n" }
-    authorized_only(hash_for_roles_path) { str += "<li>#{link_to 'Roles', roles_path, {:hreflang => 'Manage roles and their permissions.'}}</li>\n" }
-    authorized_only(hash_for_permissions_path) { str += "<li>#{link_to 'Permissions', permissions_path, {:hreflang => 'Manage permissions and their descriptions.'}}</li>\n" }
+	path = languages_path
+    authorized_only(path) { str += "<li>#{link_to 'Languages', path, {:hreflang => 'Manage languages used for translation of titles and interface.'}}</li>\n" }
+	path = users_path
+    authorized_only(path) { str += "<li>#{link_to 'Users', path, {:hreflang => 'Manage users and their roles.'}}</li>\n" }
+	path = roles_path
+    authorized_only(path) { str += "<li>#{link_to 'Roles', path, {:hreflang => 'Manage roles and their permissions.'}}</li>\n" }
+	path = permissions_path
+    authorized_only(path) { str += "<li>#{link_to 'Permissions', path, {:hreflang => 'Manage permissions and their descriptions.'}}</li>\n" }
     str += "</ul>"
     return str
   end
