@@ -43,6 +43,7 @@ module ThlIntegrationHelper
     frame_init()
     js_files = body_attributes.delete(:javascript_files)
     css_files = body_attributes.delete(:stylesheet_files)
+    css_files << 'thl_integration/thl_iframe_adjustment' if in_frame?
     title = body_attributes.delete(:title) || "#{controller.controller_name.humanize}: #{controller.action_name.humanize}"
     attrs = attributes(:template => body_attributes.delete(:template))
     return (attrs[:html_start] +
