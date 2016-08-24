@@ -1,13 +1,7 @@
 module InterfaceUtils
   module Server
     def self.get_url
-      Rails.cache.fetch('server/domain', :expires_in => 1.day) do
-        case environment
-        when DEVELOPMENT then 'http://dev.thlib.org'
-        when STAGING     then 'http://staging.thlib.org'
-        else                  'http://www.thlib.org'
-        end
-      end
+      self.get_thl_url
     end
     
     def self.get_domain

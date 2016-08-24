@@ -2,6 +2,7 @@ require "thl_integration/engine"
 require 'open-uri'
 require 'thl_cookie'
 require 'thl_integration/site'
+require 'hpricot'
 
 # The following are loaded automatically
 #ActionView::Base.send :include, ThlIntegrationHelper
