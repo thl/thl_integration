@@ -7,11 +7,11 @@ require "thl_integration/version"
 Gem::Specification.new do |s|
   s.name        = "thl_integration"
   s.version     = ThlIntegration::VERSION
-  s.authors     = ["TODO: Your name"]
-  s.email       = ["TODO: Your email"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of ThlIntegration."
-  s.description = "TODO: Description of ThlIntegration."
+  s.authors     = ["Andres Montano"]
+  s.email       = ["amontano@virginia.edu"]
+  s.homepage    = "http://subjects.kmaps.virginia.edu"
+  s.summary     = "Engine to facilitate connecting to the THL"
+  s.description = "Engine to facilitate connecting to the THL"
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
   s.test_files = Dir["test/**/*"]
