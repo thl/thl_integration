@@ -10,8 +10,8 @@ Gem::Specification.new do |s|
   s.authors     = ["Andres Montano"]
   s.email       = ["amontano@virginia.edu"]
   s.homepage    = "http://www.thlib.org"
-  s.summary     = "This engine provides look and feel to integrate with THL."
-  s.description = "This engine provides look and feel to integrate with THL."
+  s.summary     = "Engine to facilitate connecting to the THL"
+  s.description = "Engine to facilitate connecting to the THL"
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
   s.test_files = Dir["test/**/*"]
