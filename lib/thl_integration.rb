@@ -13,30 +13,26 @@ module ThlIntegration
   def self.get_layout_document(options = Hash.new)
     case InterfaceUtils::Server.environment
     when InterfaceUtils::Server::DEVELOPMENT
-      headers = {}
       domain = 'dev.thlib.org'
     when InterfaceUtils::Server::STAGING
-      headers = {}
       domain = 'staging.thlib.org'
     when InterfaceUtils::Server::PRODUCTION
-      headers = { 'Host' => 'www.thlib.org' }
-      domain = '127.0.0.1'
+      domain = 'www.thlib.org'
     else
-      headers = {}
       domain = 'www.thlib.org'
     end
     if options[:template].blank?
-      get_content("http://#{domain}/global/php/offsite.php?url=/template/index-offsite.php", headers)
+      get_content("http://#{domain}/global/php/offsite.php?url=/template/index-offsite.php")
     else
-      get_content("http://#{domain}/global/php/offsite.php?url=/template/#{options[:template]}.php", headers)
+      get_content("http://#{domain}/global/php/offsite.php?url=/template/#{options[:template]}.php")
     end
   end
   
   private
   
-  def self.get_content(url, headers={})
+  def self.get_content(url)
     begin
-      doc = Hpricot(open(url, headers))
+      doc = Hpricot(open(url))
       yield doc if block_given?
       return doc
     rescue Errno::EHOSTUNREACH
