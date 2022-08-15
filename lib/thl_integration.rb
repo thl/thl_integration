@@ -11,16 +11,16 @@ require 'hpricot'
 
 module ThlIntegration
   def self.get_layout_document(options = Hash.new)
-    case InterfaceUtils::Server.environment
-    when InterfaceUtils::Server::DEVELOPMENT
-      domain = 'dev.thlib.org'
-    when InterfaceUtils::Server::STAGING
+#    case InterfaceUtils::Server.environment
+#    when InterfaceUtils::Server::DEVELOPMENT
+#      domain = 'dev.thlib.org'
+#    when InterfaceUtils::Server::STAGING
       domain = 'staging.thlib.org'
-    when InterfaceUtils::Server::PRODUCTION
-      domain = 'www.thlib.org'
-    else
-      domain = 'www.thlib.org'
-    end
+#    when InterfaceUtils::Server::PRODUCTION
+#      domain = 'www.thlib.org'
+#    else
+#      domain = 'www.thlib.org'
+#    end
     if options[:template].blank?
       get_content("http://#{domain}/global/php/offsite.php?url=/template/index-offsite.php")
     else
