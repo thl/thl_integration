@@ -32,7 +32,13 @@ module ThlIntegration
   
   def self.get_content(url)
     begin
-      doc = Hpricot(open(url))
+      #site = open(url).read
+      #site.gsub!('http:', 'https:')
+      #site.gsub!('staging.', 'www.')
+      #File.write('index-offsite.html', site)
+      site = File.open('index-offsite.html')
+      doc = Hpricot(site)
+      #doc = Hpricot(open(url))
       yield doc if block_given?
       return doc
     rescue Errno::EHOSTUNREACH
